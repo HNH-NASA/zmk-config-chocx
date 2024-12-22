@@ -5,7 +5,5 @@
 # pass flags to the build command, `snippet` to add a Zephyr snippet, and
 # `artifact-name` to assign a name to distinguish build outputs from each other:
 #
-name: Choc-X
-build:
-  settings:
-    board_root: config
+board: ["seeeduino_xiao_ble"]
+shield: ["Choc-X_R","Choc-X_L","settings_reset"]
