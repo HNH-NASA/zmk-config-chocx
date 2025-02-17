@@ -1,31 +1,4 @@
 {
-  "name": "ChocX",
-  "author": "HNH-NASA",
-  "usb": {
-  "vid": "0x3265",
-  "pid": "0x0004",
-  "device_version": "0.0.1"},
-  "rgb_matrix": {
-    "driver": "ws2812",
-    "sat_steps": 8,
-    "val_steps": 8,
-    "speed_steps": 10,
-    "max_brightness": 150,
-    "split_count": [25, 25],
-    "sleep": true
-  },
-  "rgblight": {
-    "led_count": 50,
-    "max_brightness": 120,
-    "split_count": [25, 25],
-    "animations": {
-      "rainbow_mood": true,
-      "rainbow_swirl": true,
-      "static_gradient": true,
-      "rgb_test": true
-    }
-  },
-  
   "layouts": {
     "default_layout": {
 	  "name": "default_layout",
@@ -80,5 +53,20 @@
         {"row": 7, "col": 4, "x": 11, "y": 3}
       ]
     }
-  }
+  },
+ "sensors": [
+      {
+        "ref": "right_encoder",
+        "name": "encoder_right",
+        "identifier": "encoder_right",
+        "compatible": "alps,ec11",
+        "enabled": false
+      },
+      {
+        "ref": "left_encoder",
+        "name": "encoder_left",
+        "identifier": "encoder_left",
+        "enabled": false
+      }
+    ]
 }
