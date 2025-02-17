@@ -1,17 +1,12 @@
-/*
- * Copyright (c) 2020 The ZMK Contributors
- *
- * SPDX-License-Identifier: MIT
- */
-
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/pointing.h>
+#include <dt-bindings/zmk/mouse.h>
+#include <behaviors/rgbled_widget.dtsi>  // led制御
 
-#define MOUSE 4
-#define SCROLL 5
-#define NUM 6
+#define ZMK_MOUSE_DEFAULT_SCRL_VAL 100   //スクロール量
+
+#define MOUSE 6
 
 &mt {
     flavor = "balanced";
@@ -19,12 +14,13 @@
 };
 
 / {
-    combos {
+    //コンボ設定
+    combos {    
         compatible = "zmk,combos";
 
         tab {
-            bindings = <&kp TAB>;
-            key-positions = <11 12>;
+            bindings = <&kp TAB>;   //押したとき実行されるコマンド
+            key-positions = <11 12>;    //押すキーの位置
         };
 
         shift_tab {
@@ -48,6 +44,7 @@
         };
     };
 
+    //マクロ(既存のキーの組み合わせ)
     macros {
         to_layer_0: to_layer_0 {
             compatible = "zmk,behavior-macro-one-param";
@@ -57,6 +54,7 @@
         };
     };
 
+    //新たな動作を定義する
     behaviors {
         lt_to_layer_0: lt_to_layer_0 {
             compatible = "zmk,behavior-hold-tap";
@@ -66,6 +64,16 @@
             #binding-cells = <2>;
             tapping-term-ms = <200>;
         };
+
+        scroll_up_down: behavior_sensor_rotate_mouse_wheel_up_down {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
+            // 追加: スクロールのタップ時間を設定 (20ms)
+            tap-ms = <20>;
+        };
+
+
     };
 
     keymap {
